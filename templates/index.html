@@ -11,11 +11,7 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <link
-      rel="stylesheet"
-      href="D:\Programs\Data_Hack_2022_Placement_Predictor\css\index.css"
-      type="text/css"
-    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
   </head>
   <body>
     <div class="container">
@@ -61,7 +57,7 @@
           <div class="card d-flex">
             <div class="card-body">
               <img
-                src="D:\Programs\Data_Hack_2022_Placement_Predictor\images\card1.jpg"
+                src="{{url_for('static', filename='card1.jpg')}}"
                 class="card-img-top img-fluid"
                 alt="Card-1"
                 style="height: 200px"
@@ -85,7 +81,7 @@
           <div class="card d-flex">
             <div class="card-body">
               <img
-                src="D:\Programs\Data_Hack_2022_Placement_Predictor\images\card2.jpg"
+                src="{{url_for('static', filename='card2.jpg')}}"
                 class="card-img-top"
                 alt="Card-2"
                 style="height: 200px"
@@ -107,7 +103,7 @@
           <div class="card d-flex">
             <div class="card-body">
               <img
-                src="D:\Programs\Data_Hack_2022_Placement_Predictor\images\card3.jpg"
+                src="{{url_for('static', filename='card3.jpg')}}"
                 class="card-img-top img-fluid"
                 alt="Card-3"
                 style="height: 200px"

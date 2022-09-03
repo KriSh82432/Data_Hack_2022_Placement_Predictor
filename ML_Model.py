@@ -81,6 +81,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 import warnings
+import pickle
 warnings.filterwarnings('ignore')
 df=pd.read_csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vSVwkDCMjC3YqMd3-aGNIB5gGrUhguSyWGTt6G5_mBuDZ6UcwsCDPRUyLnTVBtp4l8bksEJIXHj0qWL/pub?output=csv')
 df
@@ -475,3 +476,6 @@ plt.show()
 
 ---
 """
+final = "model.sav"
+pickle.dump(sklearn_lin_reg, open(final, 'wb'))
+lr = pickle.load(open(final, 'rb'))

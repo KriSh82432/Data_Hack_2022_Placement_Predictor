@@ -9,13 +9,17 @@ def main():
     return render_template("index.html")
 
 @app.route('/form.html',methods=['POST','GET'])
-def predict():
+def form():
     return render_template("form.html")
-    '''features = [int(x) for x in request.form.values()]
-    value = [np.array(features)]
+
+@app.route('/predict',methods=['POST','GET'])
+def predict():
+    features = [x for x in request.form.values()]
+    #value = [np.array(features)]
     print(features)
-    print(value)'''
-    return "Hello World"
+    for x in features:
+        print(x)
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
