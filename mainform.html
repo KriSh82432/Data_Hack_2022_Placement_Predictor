@@ -49,7 +49,10 @@
     <input type="int" id="runnerNo" name="runnerNo"><br> 
     <label for="participantNo">Participant in no. of competion:</label><br>
     <input type="int" id="participantNo" name="participantNo"><br>
-    <input type="submit" value="Submit">
+    <!--<input type="submit" value="Submit">-->
+    <div id="centerbuttons">
+      <input value="Submit" title="Submit" type="submit"> 
+ </div>
   </form>
 </div>
     
@@ -82,6 +85,7 @@
       border-radius: 4px;
       cursor: pointer;
       float: right;
+      text-align: center;
     }
     h1{
       text-align: center;   
@@ -118,4 +122,8 @@ body{
       display: table;
       clear: both;
     }
+    #centerbuttons {
+   width:250px; 
+   margin:0 auto;
+   }   
     </style>
