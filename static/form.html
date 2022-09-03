@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>PLACEMENT PREDICTOR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="D:\Programs\Data_Hack_2022_Placement_Predictor\templates\form.css"
+    />
+    <script src="D:\Programs\Data_Hack_2022_Placement_Predictor\js\script.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row bg-info">
+        <div class="col-12">
+          <div class="text-center">
+            <h1 class="display-1 fw-bold">Placement Predictor</h1>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12" id="row2">
+          <div class="display-4 text-center">Form</div>
+        </div>
+      </div>
+      <div class="row" id="row1">
+        <div class="col-12">
+          <form action="#">
+            <div class="text-left">
+              <h3>Personal Details</h3>
+            </div>
+            <div class="mb-3 mt-3">
+              <label for="fname" class="form-label">First Name</label>
+              <input type="text" name="fname" id="fname" class="form-control" placeholder="Enter First Name" required="true" pattern="A-Za-z]{4,}" title="Use letters only">
+            </div>
+            <div class="mb-3">
+              <label for="lname" class="form-label">Last Name</label>
+              <input type="text" name="lname" id="lname" class="form-control" placeholder="Enter Last Name">
+            </div>
+            <div class="mb-3">
+              <label for="username" class="form-label">Create/Enter Username</label>
+              <input type="text" name="username" id="username" class="form-control" placeholder="Enter username">
+            </div>
+            <div class="mb-3">
+              <label for="age" class="form-label">Age</label>
+              <input type="number" name="age" id="age" class="form-control" placeholder="Enter your current age" min="18" max="58">
+            </div>
+            <div class="mb-3">
+              <label for="eduQualification" class="form-label">Educational Qualification</label>
+              <input type="text" name="eduQualification" id="eduQualification" class="form-control" placeholder="Current Qualification">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">E-mail</label>
+              <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email address">
+            </div>
+            <div class="mb-3">
+              <label for="nationality" class="form-label">Nationality</label>
+              <input type="text" name="country" id="nationality" placeholder="Enter your birth country" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Mobile Number</label>
+              <input type="tel" name="phone" id="phone" class="form-control" placeholder="Enter mobile number with country code">
+            </div>
+            <div class="mb-3">
+              <label for="website" class="form-label">Website URL</label>
+              <input type="url" name="website" id="website" placeholder="Enter your personal web portfolio link if any" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <input type="text" name="address" id="address" class="form-control" placeholder="Enter your address">
+            </div>
+            <div class="text-left">
+            <h3>Educational Details</h3>
+            </div>
+            <div class="mb-3">
+              <label for="stream" class="form-label">Educational Stream</label>
+              <input type="text" name="stream" id="stream" placeholder="Enter your graduation stream" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="yearofg" class="form-label">Year of Graduation</label>
+              <input type="date" name="graduationYear" id="yearofg" placeholder="Expected Year of graduation" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="college" class="form-label">Institution</label>
+              <input type="text" name="college" id="college" placeholder="Enter the name of school/college" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="cgpa" class="form-label">CGPA</label>
+              <input type="number" name="cgpa" id="cgpa" placeholder="Enter your CGPA" class="form-control" step="0.01" min="0.00">
+            </div>
+            <div class="mb-3">
+              <label for="nonacadem" class="form-label">Non-Academic Activities</label>
+              <input type="text" name="nonacadem" id="nonacadem" placeholder="Enter any non-academic activities of yours" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="backlogs" class="form-label">Backlogs</label>
+              <input type="number" name="backlogs" id="backlogs" placeholder="Enter the no. of current backlogs" class="form-control" min="0">
+            </div>
+            <div class="text-left">
+              <h3>Technical Skills</h3>
+            </div>
+            <div class="mb-3">
+              <label for="techSkill" class="form-label">Technical Skill Level</label>
+              <input type="range" name="techSkill" id="techSkill" class="form-control" min="1" max="10" step="1" value="1">
+            </div>
+            <div class="mb-3">
+              <label for="projects" class="form-label">No. of Projects</label>
+              <input type="number" name="projects" id="projects" placeholder="Enter no. of projects" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="easyProjects" class="form-label">Difficulty - Easy</label>
+              <input type="number" name="easyProjects" id="easyProjects" placeholder="Enter no. of easy projects" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="mediumProjects" class="form-label">Difficulty - Medium</label>
+              <input type="number" name="mediumProjects" id="mediumProjects" placeholder="Enter no. of medium projects" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="expertProjects" class="form-label">Difficulty - Expert</label>
+              <input type="number" name="expertProjects" id="expertProjects" placeholder="Enter no. of expert level projects" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="problemSolving" class="form-label">Problem Solving</label>
+              <input type="range" name="problemSolving" id="problemSolving" min="1" max="10" step="1" value="1" class="form-control">
+            </div>
+            <div class="text-left">
+              <h3>Work Experience and Achievements</h3>
+            </div>
+            <div class="mb-3">
+              <label for="internships" class="form-label">Internships</label>
+              <input type="number" name="internships" id="internships" placeholder="Enter no. of internships you've done" class="form-control">
+            </div><div class="mb-3">
+              <label for="winner" class="form-label">Winner in competitions</label>
+              <input type="number" name="winner" id="winner" placeholder="Enter no. of times you've got 1st place in any competitions" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="runner" class="form-label">Runner in competitions</label>
+              <input type="number" name="runner" id="runner" placeholder="Enter no. of times you've got 2nd place in any competitions" class="form-control">
+            </div></div><div class="mb-3">
+              <label for="participant" class="form-label">Participated competitions</label>
+              <input type="number" name="participant" id="participant" placeholder="Enter no. of competitions you've participated" class="form-control">
+            </div>
+            <div class="text-left">
+              <h3>Communication skills and others</h3>
+            </div>
+            <div class="mb-3">
+              <label for="comSkill" class="form-label">Communication skills</label>
+              <input type="range" name="comSkill" id="comSkill" min="1" max="10" step="1" value="1" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="personality" class="form-label">Personality Level</label>
+              <input type="range" name="personality" id="personality" min="1" max="10" step="1" value="1" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="resume" class="form-label">Resume Level</label>
+              <input type="range" name="resume" id="resume" min="1" max="10" step="1" value="1" class="form-control">
+            </div>
+            </div><br>
+            <div class="text-center">
+              <button class="btn btn-primary btn-lg" type="reset" id="btn1">Reset</button>
+              <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
