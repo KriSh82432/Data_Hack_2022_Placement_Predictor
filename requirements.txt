@@ -1,0 +1,10 @@
+python
+numpy
+pandas
+matplotlib
+sci-py
+sklearn
+statsmodels
+flask
+bootstrap
+flask_mysql
