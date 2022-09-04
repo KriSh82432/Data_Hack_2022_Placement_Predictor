@@ -76,6 +76,14 @@ participantNo
 """
 
 # Import the required modules and load the dataset.
+import joblib
+from joblib import Parallel, delayed
+from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error, mean_squared_log_error
+from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
+from scipy.stats import norm
+import statsmodels.api as sm
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -83,7 +91,8 @@ import seaborn as sns
 import warnings
 import pickle
 warnings.filterwarnings('ignore')
-df=pd.read_csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vSVwkDCMjC3YqMd3-aGNIB5gGrUhguSyWGTt6G5_mBuDZ6UcwsCDPRUyLnTVBtp4l8bksEJIXHj0qWL/pub?output=csv')
+df = pd.read_csv(
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vSVwkDCMjC3YqMd3-aGNIB5gGrUhguSyWGTt6G5_mBuDZ6UcwsCDPRUyLnTVBtp4l8bksEJIXHj0qWL/pub?output=csv')
 df
 df.head()
 
@@ -113,125 +122,125 @@ Perform the following tasks:
 """
 
 # Check categorical attributes
-from sklearn.model_selection import train_test_split
-X=df[features]
-y=df['Age']
-X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.33,random_state=29)
+X = df[features]
+y = df['Age']
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.33, random_state=29)
 
 # Boxplot for 'Age' vs 'techSkillsLevel'
 plt.style.use("dark_background")
 plt.figure(figsize=(18, 6))
-sns.boxplot(x='Age', y='techSkillsLevel', data=df )
+sns.boxplot(x='Age', y='techSkillsLevel', data=df)
 plt.show()
 
 # Boxplot for 'teamWorking' vs 'comSkillsLevel'
 plt.style.use("dark_background")
 plt.figure(figsize=(18, 6))
-sns.boxplot(x='teamWorking', y='comSkillsLevel', data=df )
+sns.boxplot(x='teamWorking', y='comSkillsLevel', data=df)
 plt.show()
 
 # Boxplot for 'problemSolvingskills' vs 'techSkillsLevel'
 plt.style.use("dark_background")
 plt.figure(figsize=(18, 6))
-sns.boxplot(x='problemSolvingskills', y='techSkillsLevel', data=df )
+sns.boxplot(x='problemSolvingskills', y='techSkillsLevel', data=df)
 plt.show()
 
 # Boxplot for 'winnerNo' vs 'techSkillsLevel'
 plt.style.use("dark_background")
 plt.figure(figsize=(18, 6))
-sns.boxplot(x='winnerNo', y='techSkillsLevel', data=df )
+sns.boxplot(x='winnerNo', y='techSkillsLevel', data=df)
 plt.show()
 
 # Boxplot for 'CGPA' vs 'techSkillsLevel'
 plt.style.use("dark_background")
 plt.figure(figsize=(18, 6))
-sns.boxplot(x='CGPA', y='techSkillsLevel', data=df )
+sns.boxplot(x='CGPA', y='techSkillsLevel', data=df)
 plt.show()
 
 # Boxplot for 'CGPA' vs 'problemSolvingskills'
 plt.style.use("dark_background")
 plt.figure(figsize=(18, 6))
-sns.boxplot(x='CGPA', y='problemSolvingskills', data=df )
+sns.boxplot(x='CGPA', y='problemSolvingskills', data=df)
 plt.show()
 
 # Boxplot for 'advancedProjects' vs 'techSkillsLevel'
 plt.style.use("dark_background")
 plt.figure(figsize=(18, 6))
-sns.boxplot(x='advancedProjects', y='techSkillsLevel', data=df )
+sns.boxplot(x='advancedProjects', y='techSkillsLevel', data=df)
 plt.show()
 
 # Boxplot for 'problemSolvingskills' vs 'hardProjects'
 plt.style.use("dark_background")
 plt.figure(figsize=(18, 6))
-sns.boxplot(x='problemSolvingskills', y='hardProjects', data=df )
+sns.boxplot(x='problemSolvingskills', y='hardProjects', data=df)
 plt.show()
 
 # Boxplot for 'resumeLevel' vs 'techSkillsLevel'
 plt.style.use("dark_background")
 plt.figure(figsize=(18, 6))
-sns.boxplot(x='resumeLevel', y='techSkillsLevel', data=df )
+sns.boxplot(x='resumeLevel', y='techSkillsLevel', data=df)
 plt.show()
 
 # Boxplot for 'techSkillsLevel' vs 'participantNo'
 plt.style.use("dark_background")
 plt.figure(figsize=(18, 6))
-sns.boxplot(x='techSkillsLevel', y='participantNo', data=df )
+sns.boxplot(x='techSkillsLevel', y='participantNo', data=df)
 plt.show()
 
 # Boxplot for 'techSkillsLevel' vs 'runnerNo'
 plt.style.use("dark_background")
 plt.figure(figsize=(18, 6))
-sns.boxplot(x='techSkillsLevel', y='runnerNo', data=df )
+sns.boxplot(x='techSkillsLevel', y='runnerNo', data=df)
 plt.show()
 
 # Boxplot for 'advancedProjects' vs 'winnerNo'
 plt.style.use("dark_background")
 plt.figure(figsize=(18, 6))
-sns.boxplot(x='advancedProjects', y='winnerNo', data=df )
+sns.boxplot(x='advancedProjects', y='winnerNo', data=df)
 plt.show()
 
 # Boxplot for 'advancedProjects' vs 'runnerNo'
 plt.style.use("dark_background")
 plt.figure(figsize=(18, 6))
-sns.boxplot(x='advancedProjects', y='runnerNo', data=df )
+sns.boxplot(x='advancedProjects', y='runnerNo', data=df)
 plt.show()
 
 # Boxplot for 'techSkillsLevel' vs 'winnerNo'
 plt.style.use("dark_background")
 plt.figure(figsize=(18, 6))
-sns.boxplot(x='techSkillsLevel', y='winnerNo', data=df )
+sns.boxplot(x='techSkillsLevel', y='winnerNo', data=df)
 plt.show()
 
 #  scatter plot with 'mediumProjects' on X-axis and 'techSkillsLevel' on Y-axis
 plt.figure(figsize=(18, 6))
-plt.scatter(x='mediumProjects', y='techSkillsLevel', data=df )
+plt.scatter(x='mediumProjects', y='techSkillsLevel', data=df)
 plt.show()
 
 #scatter plot with 'advancedProjects' on X-axis and 'winnerNo' on Y-axis
 plt.figure(figsize=(18, 6))
-plt.scatter(x='advancedProjects', y='winnerNo', data=df )
+plt.scatter(x='advancedProjects', y='winnerNo', data=df)
 plt.show()
 
 #  scatter plot with 'Age' on X-axis and 'personalityLevel' on Y-axis
 plt.figure(figsize=(18, 6))
-plt.scatter(x='Age', y='personalityLevel', data=df )
+plt.scatter(x='Age', y='personalityLevel', data=df)
 plt.show()
 
 # scatter plot with 'easyProjects' on X-axis and 'Internships' on Y-axis
 plt.figure(figsize=(18, 6))
-plt.scatter(x='easyProjects', y='Internships', data=df )
+plt.scatter(x='easyProjects', y='Internships', data=df)
 plt.show()
 
 # Create scatter plot with 'CGPA' on X-axis and 'HistoryOfBacklogs' on Y-axis
 plt.figure(figsize=(18, 6))
-plt.scatter(x='CGPA', y='HistoryOfBacklogs', data=df )
+plt.scatter(x='CGPA', y='HistoryOfBacklogs', data=df)
 plt.show()
 
 # Create a normal distribution curve for the 'Internships'.
 plt.style.use('ggplot')
 plt.figure(figsize=(15, 5))
 plt.title('normal distribution curve for the Internships')
-sns.distplot(df['Internships'],bins='sturges',hist=False)
+sns.distplot(df['Internships'], bins='sturges', hist=False)
 plt.grid()
 plt.show()
 # Create a probablity density function for plotting the normal distribution
@@ -239,25 +248,28 @@ plt.show()
 
 # Plot the normal distribution curve using plt.scatter()
 
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
 
 features = list(df.columns.values)
 features.remove('Age')
 features
 
-def myfunc(n):
-  return len(n)
 
-x = map(myfunc, ('r2_score', 0,1,3,20))
+def myfunc(val, leftMin, leftMax, rightMin, rightMax):
+    leftSpan = leftMax - leftMin
+    rightSpan = rightMax - rightMin
+    valueScaled = float(val - leftMin) / float(leftSpan)
+    return rightMin + (valueScaled * rightSpan)
 
-import statsmodels.api as sm
+map_out = myfunc(r2_score, 0, 1, 3, 20)
+
 
 # Create data frames for the features and target again and also split them into the train and test sets.
 X = df[features]
 y = df['Age']
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.30, random_state = 42) # Test set will have 33% of the values.
+# Test set will have 33% of the values.
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.30, random_state=42)
 
 # Add a constant to get an intercept
 X_train_sm = sm.add_constant(X_train)
@@ -284,8 +296,7 @@ Build a multiple linear regression model using the `statsmodels.api` module.
 """
 
 # Split the 'df' Dataframe into the train and test sets.
-from sklearn.model_selection import train_test_split
-train_df, test_df = train_test_split(df, test_size = 0.3, random_state = 42)
+train_df, test_df = train_test_split(df, test_size=0.3, random_state=42)
 features = list(df.columns)
 features.remove('Age')
 
@@ -299,18 +310,18 @@ X_train[X_train.columns[:16]] = X_train[X_train.columns[:16]]
 X_test[X_test.columns[:16]] = X_test[X_test.columns[:16]]
 
 # Build a linear regression model using all the features to predict placement.
-import statsmodels.api as sm
 
 X_train_sm = sm.add_constant(X_train)
 lin_reg = sm.OLS(y_train, X_train_sm).fit()
 
 
-
 # calculate N and p-values.
-num_rows = X_train.shape[0] # Number of rows or instances 
-num_predictors = X_train.shape[1] # Number of columns or feature (or independent) variables
+num_rows = X_train.shape[0]  # Number of rows or instances
+# Number of columns or feature (or independent) variables
+num_predictors = X_train.shape[1]
 print("Number of rows (N):", num_rows)
 print("Number of predictors (p):", num_predictors)
+
 
 def mean_sq_model(X, y_actual):
     y_pred = lin_reg.predict(X)
@@ -318,25 +329,30 @@ def mean_sq_model(X, y_actual):
     msm = sq_model.sum() / (num_predictors - 1)
     return msm
 
+
 def mean_sq_error(X, y_actual):
     y_pred = lin_reg.predict(X)
     sq_error = (y_actual - y_pred) ** 2
     mse = sq_error.sum() / (num_rows - num_predictors)
     return mse
 
+
 # Calculate the p-value
-f_statistic=mean_sq_model(X_train_sm,y_train)/mean_sq_error(X_train_sm,y_train)
+f_statistic = mean_sq_model(X_train_sm, y_train) / \
+    mean_sq_error(X_train_sm, y_train)
 f_statistic
 
-from scipy.stats import norm
 pvalue = (2 * (1 - norm.cdf(abs(f_statistic))))
 pvalue
 
 #Find adjusted r squared
-num_rows = X_train.shape[0] # Number of rows or instances 
-num_predictors = X_train.shape[1] # Number of columns or feature (or independent) variables
-r2_score = lin_reg.rsquared # R-squared (or coefficient of determination) value 
-adj_r2_score = 1 - ((1 - r2_score) * (num_rows - 1))/(num_rows - num_predictors - 1) # Adjusted R-squared calculation
+num_rows = X_train.shape[0]  # Number of rows or instances
+# Number of columns or feature (or independent) variables
+num_predictors = X_train.shape[1]
+# R-squared (or coefficient of determination) value
+r2_score = lin_reg.rsquared
+adj_r2_score = 1 - ((1 - r2_score) * (num_rows - 1)) / \
+    (num_rows - num_predictors - 1)  # Adjusted R-squared calculation
 adj_r2_score
 
 """**Q:** What is the  adjusted r-squared value?
@@ -351,11 +367,10 @@ Build a multiple linear regression model  using `sklearn` module. Also, evaluate
 """
 
 # Build multiple linear regression model using all the features
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
 X = df[features]
 y = df['Age']
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.33, random_state = 42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.33, random_state=42)
 
 
 y_train_reshaped = y_train.values.reshape(-1, 1)
@@ -366,22 +381,20 @@ sklearn_lin_reg = LinearRegression()
 sklearn_lin_reg.fit(X_train, y_train_reshaped)
 
 
-
-print("\nConstant".ljust(15, " "), f"{sklearn_lin_reg.intercept_[0]:.6f}") 
+print("\nConstant".ljust(15, " "), f"{sklearn_lin_reg.intercept_[0]:.6f}")
 
 
 for item in list(zip(X.columns.values, sklearn_lin_reg.coef_[0])):
   print(f"{item[0]}".ljust(15, " "), f"{item[1]:.6f}")
 
 # Evaluate the linear regression model using the 'r2_score', 'mean_squared_error' & 'mean_absolute_error' functions of the 'sklearn' module.
-from sklearn.metrics import r2_score, mean_squared_error , mean_absolute_error,mean_squared_log_error
 y_train_predict = sklearn_lin_reg.predict(X_train)
 y_test_predict = sklearn_lin_reg.predict(X_test)
 
-r2_score=r2_score(y_train,y_train_predict)
-mean_squared_error=mean_squared_error(y_train,y_train_predict)
-mean_absolute_error=mean_absolute_error(y_train,y_train_predict)
-print(r2_score,mean_squared_error,mean_absolute_error)
+#r2_score = r2_score(y_train, y_train_predict)
+mean_squared_error = mean_squared_error(y_train, y_train_predict)
+mean_absolute_error = mean_absolute_error(y_train, y_train_predict)
+print(mean_squared_error, mean_absolute_error)
 
 """---
 
@@ -398,7 +411,8 @@ for f in features:
   if (corr_coef >= 0.2) or (corr_coef <= -0.2):
     major_features[f] = corr_coef
 
-print("Number of features moderately to highly correlated with techSkillsLevel =", len(major_features), "\n")
+print("Number of features moderately to highly correlated with techSkillsLevel =",
+      len(major_features), "\n")
 major_features
 
 #Build multiple linear regression model using all the features selected after RFE
@@ -407,7 +421,8 @@ major_features
 
 X = df[features]
 y = df['Age']
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.33, random_state = 42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.33, random_state=42)
 
 
 y_train_reshaped = y_train.values.reshape(-1, 1)
@@ -419,8 +434,7 @@ sklearn_lin_reg = LinearRegression()
 sklearn_lin_reg.fit(X_train, y_train_reshaped)
 
 
-
-print("\nConstant".ljust(15, " "), f"{sklearn_lin_reg.intercept_[0]:.6f}") 
+print("\nConstant".ljust(15, " "), f"{sklearn_lin_reg.intercept_[0]:.6f}")
 
 # Print the names of the features along with the values of their corresponding coefficients.
 
@@ -428,15 +442,17 @@ for item in list(zip(X.columns.values, sklearn_lin_reg.coef_[0])):
   print(f"{item[0]}".ljust(15, " "), f"{item[1]:.6f}")
 
 # Evaluate the linear regression model using the 'r2_score', 'mean_squared_error' & 'mean_absolute_error' functions of the 'sklearn' module.
-from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 y_train_pred = sklearn_lin_reg.predict(X_train)
 y_test_pred = sklearn_lin_reg.predict(X_test)
 
 print(f"Train Set\n{'-' * 50}")
-print(f"R-squared: {r2_score(y_train_reshaped, y_train_pred):.3f}")
-print(f"Mean Squared Error: {mean_squared_error(y_train_reshaped, y_train_pred):.3f}")
-print(f"Root Mean Squared Error: {np.sqrt(mean_squared_error(y_train_reshaped, y_train_pred)):.3f}")
-print(f"Mean Absolute Error: {mean_absolute_error(y_train_reshaped, y_train_pred):.3f}")
+#print(f"R-squared: {r2_score(y_train_reshaped, y_train_pred):.3f}")
+print(
+    f"Mean Squared Error: {mean_squared_error(y_train_reshaped, y_train_pred):.3f}")
+print(
+    f"Root Mean Squared Error: {np.sqrt(mean_squared_error(y_train_reshaped, y_train_pred)):.3f}")
+print(
+    f"Mean Absolute Error: {mean_absolute_error(y_train_reshaped, y_train_pred):.3f}")
 
 """---
 
@@ -446,17 +462,17 @@ Perform residual analysis to check if the residuals (errors) are normally distri
 """
 
 # a histogram for the errors obtained in the predicted values for the train set.
-train_error=y_train_pred
-plt.figure(figsize=(15,6))
-sns.distplot(train_error,bins='sturges')
-plt.axvline(x=np.mean(train_error),color='purple')
+train_error = y_train_pred
+plt.figure(figsize=(15, 6))
+sns.distplot(train_error, bins='sturges')
+plt.axvline(x=np.mean(train_error), color='purple')
 plt.show()
 
 #  a histogram for the errors obtained in the predicted values for the test set.
-test_error=y_test_pred
-plt.figure(figsize=(15,6))
-sns.distplot(train_error,bins='sturges')
-plt.axvline(x=np.mean(train_error),color='purple')
+test_error = y_test_pred
+plt.figure(figsize=(15, 6))
+sns.distplot(train_error, bins='sturges')
+plt.axvline(x=np.mean(train_error), color='purple')
 plt.show()
 
 """---
@@ -467,15 +483,22 @@ We can Check for Homoscedasticity (constant variance) by creating a scatter plot
 """
 
 #  a scatter plot between the errors and the dependent variable for the train set.
-plt.figure(figsize=(15,7))
-plt.scatter(y_train,train_error)
-plt.axhline(y=np.mean(train_error),color='red')
+plt.figure(figsize=(15, 7))
+plt.scatter(y_train, train_error)
+plt.axhline(y=np.mean(train_error), color='red')
 plt.show()
 
 """---
 
 ---
 """
-final = "model.sav"
-pickle.dump(sklearn_lin_reg, open(final, 'wb'))
-lr = pickle.load(open(final, 'rb'))
+
+
+# Save the model as a pickle in a file
+joblib.dump(sklearn_lin_reg, 'filename.pkl')
+
+# Load the model from the file
+knn_from_joblib = joblib.load('filename.pkl')
+
+# Use the loaded model to make predictions
+knn_from_joblib.predict(X_test)
